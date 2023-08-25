@@ -33,7 +33,7 @@ jobs:
           /repos/vchiranjeeviako/testing/releases/generate-notes \
           -f tag_name='${{ steps.version.outputs.version_tag }}' \
           -f target_commitish='test' \
-          -f previous_tag_name='${{ env.PREVIOUS_TAG }}' | jq -r '.body')
+          -f previous_tag_name='${{ env.PREVIOUS_TAG }}' | jq '.body')
           echo "changes=$changes" >> $GITHUB_ENV
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
