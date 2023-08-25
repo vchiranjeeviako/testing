@@ -31,9 +31,9 @@ jobs:
           -H "Accept: application/vnd.github+json" \
           -H "X-GitHub-Api-Version: 2022-11-28" \
           /repos/vchiranjeeviako/testing/releases/generate-notes \
-          -f tag_name='${{ steps.version.outputs.version_tag }}' \
+          -f tag_name='v0.3.4' \
           -f target_commitish='test' \
-          -f previous_tag_name='${{ env.PREVIOUS_TAG }}' | jq '.body | |= sub("\n"; "%0A")')
+          -f previous_tag_name='v0.3.3' | jq '.body |= sub("\n"; "%0A")' | jq '.body')
           echo "changes=$changes" >> $GITHUB_ENV
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
