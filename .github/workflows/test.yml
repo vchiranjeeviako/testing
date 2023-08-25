@@ -24,7 +24,7 @@ jobs:
           major_pattern: '(MAJOR)'
           minor_pattern: '(MINOR)'
 
-      - name: Get the changes since previous tag
+      - name: Generate a release
         run: |
           changes=$(gh api \
           --method POST \
@@ -34,12 +34,7 @@ jobs:
           -f tag_name='${{ steps.version.outputs.version_tag }}' \
           -f target_commitish='test' \
           -f previous_tag_name='${{ env.PREVIOUS_TAG }}' | jq -r '.body')
-          echo "changes=$changes" >> $GITHUB_ENV
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Generate a release
-        run: |
+          
           gh api \
           --method POST \
           -H "Accept: application/vnd.github+json" \
@@ -48,6 +43,6 @@ jobs:
           -f tag_name='${{ steps.version.outputs.version_tag }}' \
           -f target_commitish='test' \
           -f name='${{ steps.version.outputs.version_tag }}' \
-          -f body=${{ env.changes }}
+          -f body=$changes
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
