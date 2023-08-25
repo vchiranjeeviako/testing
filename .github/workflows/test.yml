@@ -1,0 +1,14 @@
+on:
+  push:
+    branches:
+      - test
+
+jobs:
+  get_version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get version
+        uses: paulhatch/semantic-version@v5.1.0
+        with:
+          major_pattern: '(MAJOR)'
+          minor_pattern: '(MINOR)'
