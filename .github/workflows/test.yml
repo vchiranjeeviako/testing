@@ -48,6 +48,6 @@ jobs:
           -f tag_name='${{ steps.version.outputs.version_tag }}' \
           -f target_commitish='test' \
           -f name='${{ steps.version.outputs.version_tag }}' \
-          -f body='${{ env.changes }}' \
+          -f body='${{ env.changes }}'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
