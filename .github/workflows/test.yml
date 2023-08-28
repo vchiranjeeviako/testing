@@ -42,7 +42,7 @@ jobs:
           --method POST \
           -H "Accept: application/vnd.github+json" \
           -H "X-GitHub-Api-Version: 2022-11-28" \
-          /repos/${{ inputs.repo }}/releases/generate-notes \
+          /repos/vchiranjeeviako/testing/releases/generate-notes \
           -f tag_name='${{ env.NEW_VERSION_TAG }}' \
           -f target_commitish='main' \
           -f previous_tag_name='${{ env.PREVIOUS_TAG }}' | jq -r '.body')
@@ -51,7 +51,7 @@ jobs:
           --method POST \
           -H "Accept: application/vnd.github+json" \
           -H "X-GitHub-Api-Version: 2022-11-28" \
-          /repos/${{ inputs.repo }}/releases \
+          /repos/vchiranjeeviako/testing/releases \
           -f tag_name='${{ env.NEW_VERSION_TAG }}' \
           -f target_commitish='main' \
           -f name='${{ env.NEW_VERSION_TAG }}' \
